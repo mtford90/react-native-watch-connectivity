@@ -60,3 +60,7 @@ and run `pod install`.
 ### Expo Support
 
 This library has been successfully used in Expo apps (Bare Workflow with EAS Build).
+
+## Generating watch target in expo prebuild
+
+This library is available as a [prebuild](https://docs.expo.dev/workflow/prebuild/) for Expo apps. It will automatically generate a watch target for you. For more information about integration, see [expo-prebuild.MD](expo-prebuild.MD).

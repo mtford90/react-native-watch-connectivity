@@ -2,15 +2,17 @@
   "name": "react-native-watch-connectivity",
   "version": "1.1.0",
   "description": "React Native library to enable communication with Apple Watch app",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "files": [
-    "dist",
+    "plugin/build",
+    "build",
     "ios",
     "LICENSE.md",
     "README.md",
-    "RNWatch.podspec"
+    "RNWatch.podspec",
+    "app.plugin.js"
   ],
-  "types": "dist/index.d.ts",
+  "types": "build/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "Michael Ford",
@@ -34,7 +36,13 @@
   ],
   "homepage": "http://mtford.co.uk/react-native-watch-connectivity/",
   "scripts": {
-    "build": "rm -rf dist && yarn tsc && cp ./lib/RNWatch.d.ts ./dist/RNWatch.d.ts && yarn lint ./dist/**/*.d.ts ./dist/**/*.js --fix --quiet",
+    "build": "mkdir -p ./build && cp ./lib/RNWatch.d.ts ./build/RNWatch.d.ts && expo-module build",
+    "post-build": "cp ./lib/RNWatch.d.ts ./build/RNWatch.d.ts",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx",
     "precommit": "tsc --skipLibCheck && lint-staged"
   },
@@ -64,20 +72,24 @@
     "lodash.sortby": "^4.7.0"
   },
   "devDependencies": {
-    "typescript": "^3.9.5",
-    "eslint-plugin-typescript-sort-keys": "^1.2.0",
-    "eslint": "^6.8.0",
-    "@types/react-native": "^0.62.2",
-    "@types/react": "^16.9.34",
-    "react-native": "^0.62.2",
-    "react": "16.11.0",
     "@react-native-community/eslint-config": "^1.1.0",
-    "lint-staged": "^10.1.3",
-    "husky": "^4.2.5",
-    "sort-package-json": "^1.41.0",
-    "prettier": "^2.0.4",
+    "@tsconfig/node14": "^14.1.0",
+    "@types/lodash.sortby": "^4.7.6",
+    "@types/react": "^16.9.34",
+    "@types/react-native": "^0.62.2",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^6.8.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "@types/lodash.sortby": "^4.7.6"
+    "eslint-plugin-typescript-sort-keys": "^3.1.0",
+    "expo-module-scripts": "^3.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.3",
+    "prettier": "^2.0.4",
+    "react": "16.11.0",
+    "react-native": "^0.62.2",
+    "sort-package-json": "^1.41.0",
+    "typescript": "^4.9.5"
   },
   "jest": {
     "preset": "react-native"
